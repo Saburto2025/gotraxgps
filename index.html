@@ -1,126 +1,144 @@
----
-// src/pages/index.astro
-// Aquí va la lógica del servidor (Full Stack). Traemos los datos de los planes de forma limpia.
-const planes = [
-  {
-    id: "personales",
-    titulo: "Uso Personal & Motos",
-    descripcion: "Proteja su carro, moto o mascota contra robos.",
-    badge: "El más buscado",
-    features: ["Instalación 100% oculta debajo del tablero", "Alertas directas al celular por vibración", "Compatible con chips Kölbi, Liberty y Claro"]
-  },
-  {
-    id: "empresas",
-    titulo: "Flotillas & Telemetría",
-    descripcion: "Control total de camiones, paneles y maquinaria pesada.",
-    badge: "Empresarial",
-    features: ["Control y reporte de consumo de combustible", "Apagado del motor de forma remota", "Plataforma web para reportes del MOPT"]
-  },
-  {
-    id: "outdoor",
-    titulo: "Outdoor & Aventura",
-    descripcion: "GPS de mano para senderismo y zonas montañosas.",
-    badge: "100% Autónomo",
-    features: ["Batería de larga duración (hasta 15 días)", "Certificación IP67 (Resistente al agua y barro)", "Ideal para el Chirripó o Volcán Barva"]
-  }
-];
----
-
+<!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rastreo GPS en Costa Rica | Localización y Seguridad Satelital</title>
-    <meta name="description" content="Proteja su vehículo o flotilla en cualquier parte de Costa Rica. Monitoreo en tiempo real compatible con Waze y Google Maps. Cobertura nacional." />
-    <!-- Certificado SSL activo por defecto al subirlo a Vercel/Netlify -->
-  </head>
-  <body class="bg-slate-50 text-slate-900 font-sans antialiased">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rastreo GPS en Costa Rica | Localización y Seguridad Satelital</title>
+  <meta name="description" content="Proteja su vehículo o flotilla en cualquier parte de Costa Rica. Monitoreo en tiempo real compatible con Waze y Google Maps. Cobertura nacional.">
+  
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans antialiased">
 
-    <!-- 1. HERO SECTION (Enfoque de Marketing Directo) -->
-    <header class="relative bg-gradient-to-br from-blue-900 to-slate-900 text-white py-20 px-4 md:px-8">
-      <div class="max-w-5xl mx-auto text-center space-y-6">
-        <span class="bg-blue-500/20 text-blue-300 px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide uppercase">
-          📍 Conectado a Redes Locales 4G/5G
-        </span>
-        <h1 class="text-4xl md:text-6xl font-black tracking-tight leading-none max-w-4xl mx-auto">
-          Asegure su vehículo en cualquier rincón de <span class="text-blue-400">Costa Rica</span>
-        </h1>
-        <p class="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto font-medium">
-          Rastreo satelital exacto. Olvídese de las direcciones por señas; visualice la ubicación exacta integrada con <strong class="text-white">Waze y Google Maps</strong>.
-        </p>
-        <div class="pt-4 flex flex-col sm:flex-row justify-center gap-4">
-          <a href="#planes" class="bg-blue-500 hover:bg-blue-600 text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-blue-500/20 transition-all text-center">
-            Ver Modelos GPS
-          </a>
-          <a href="#cotizar" class="bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 font-bold px-8 py-4 rounded-xl transition-all text-center">
-            Cotizar Flotillas (Empresas)
-          </a>
-        </div>
+  <header class="relative bg-gradient-to-br from-blue-900 to-slate-900 text-white py-20 px-4 md:px-8">
+    <div class="max-w-5xl mx-auto text-center space-y-6">
+      <span class="inline-block bg-blue-500/20 text-blue-300 px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide uppercase mb-4">
+        📍 Conectado a Redes Locales 4G/5G
+      </span>
+      <h1 class="text-4xl md:text-6xl font-black tracking-tight leading-none max-w-4xl mx-auto">
+        Asegure su vehículo en cualquier rincón de <span class="text-blue-400">Costa Rica</span>
+      </h1>
+      <p class="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto font-medium mt-4">
+        Rastreo satelital exacto. Olvídese de las direcciones por señas; visualice la ubicación exacta integrada con <strong class="text-white">Waze y Google Maps</strong>.
+      </p>
+      <div class="pt-6 flex flex-col sm:flex-row justify-center gap-4">
+        <a href="#planes" class="bg-blue-500 hover:bg-blue-600 text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-blue-500/20 transition-all text-center">
+          Ver Modelos GPS
+        </a>
+        <a href="javascript:void(0);" onclick="abrirWhatsApp('Cotización Empresarial')" class="bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 font-bold px-8 py-4 rounded-xl transition-all text-center">
+          Cotizar Flotillas (Empresas)
+        </a>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <!-- 2. SEGMENTACIÓN CLARA DE CLIENTES (UI/UX Cards) -->
-    <main id="planes" class="max-w-6xl mx-auto py-20 px-4">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold md:text-4xl">Soluciones a la medida del mercado tico</h2>
-        <p class="text-slate-600 mt-2">Seleccione el uso que necesita y vea las especificaciones adaptadas.</p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-8">
-        {planes.map((plan) => (
-          <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between hover:shadow-md transition-shadow relative overflow-hidden">
-            <div>
-              <span class="absolute top-4 right-4 bg-slate-100 text-slate-800 text-xs font-bold px-2.5 py-1 rounded">
-                {plan.badge}
-              </span>
-              <h3 class="text-2xl font-bold text-slate-900 mt-2">{plan.titulo}</h3>
-              <p class="text-slate-600 mt-3 text-sm">{plan.descripcion}</p>
-              
-              <ul class="mt-6 space-y-3">
-                {plan.features.map((feat) => (
-                  <li class="flex items-start text-sm text-slate-700">
-                    <span class="text-green-500 mr-2 font-bold">✓</span>
-                    {feat}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            
-            <div class="mt-8 pt-6 border-t border-slate-100">
-              <button 
-                onclick={`abrirWhatsApp('${plan.titulo}')`}
-                class="w-full bg-slate-900 hover:bg-blue-900 text-white text-center font-bold py-3 px-4 rounded-xl transition-colors text-sm"
-              >
-                Preguntar por precio
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-    </main>
-
-    <!-- 3. BOTÓN FLOTANTE INTELIGENTE (WhatsApp Conversion) -->
-    <div class="fixed bottom-6 right-6 z-50">
-      <button 
-        onclick="abrirWhatsApp('Soporte General')"
-        class="bg-[#25D366] hover:bg-[#20ba5a] text-white p-4 rounded-full shadow-2xl flex items-center justify-center transition-transform hover:scale-105"
-        aria-label="Chat en WhatsApp"
-      >
-        <!-- Icono simple de teléfono/chat en SVG para no cargar librerías pesadas -->
-        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.963C16.528 2.016 14.056.993 11.437.993c-5.443 0-9.87 4.373-9.874 9.803-.001 1.65.453 3.262 1.313 4.675L1.87 20.25l4.777-1.096z"/>
-        </svg>
-      </button>
+  <main id="planes" class="max-w-6xl mx-auto py-20 px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold md:text-4xl">Soluciones a la medida del mercado tico</h2>
+      <p class="text-slate-600 mt-2">Seleccione el uso que necesita y vea las especificaciones adaptadas.</p>
     </div>
 
-    <!-- 4. SCRIPT DE MARKETING AUTOMATIZADO -->
-    <script is:inline>
-      function abrirWhatsApp(contexto) {
-        // Reemplaza con tu número de teléfono real (Código de país 506 para Costa Rica)
-        const telefono = "50688888888"; 
-        const mensaje = encodeURIComponent(`Hola, vi la página web y me interesa el servicio de GPS para: ${contexto}. ¿Me podrían dar más información? Pure vida.`);
-        window.open(`https://wa.me/${telefono}?text=${mensaje}`, '_blank');
-      }
-    </script>
-  </body>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between hover:shadow-md transition-shadow relative overflow-hidden">
+        <div>
+          <span class="absolute top-4 right-4 bg-blue-100 text-blue-800 text-xs font-bold px-2.5 py-1 rounded">
+            El más buscado
+          </span>
+          <h3 class="text-2xl font-bold text-slate-900 mt-2">Uso Personal & Motos</h3>
+          <p class="text-slate-600 mt-3 text-sm">Proteja su carro, moto o mascota contra robos.</p>
+          
+          <ul class="mt-6 space-y-3">
+            <li class="flex items-start text-sm text-slate-700">
+              <span class="text-green-500 mr-2 font-bold">✓</span> Instalación 100% oculta debajo del tablero
+            </li>
+            <li class="flex items-start text-sm text-slate-700">
+              <span class="text-green-500 mr-2 font-bold">✓</span> Alertas directas al celular por vibración
+            </li>
+            <li class="flex items-start text-sm text-slate-700">
+              <span class="text-green-500 mr-2 font-bold">✓</span> Compatible con chips Kölbi, Liberty y Claro
+            </li>
+          </ul>
+        </div>
+        <div class="mt-8 pt-6 border-t border-slate-100">
+          <button onclick="abrirWhatsApp('Uso Personal y Motos')" class="w-full bg-slate-900 hover:bg-blue-900 text-white text-center font-bold py-3 px-4 rounded-xl transition-colors text-sm cursor-pointer">
+            Preguntar por precio
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between hover:shadow-md transition-shadow relative overflow-hidden">
+        <div>
+          <span class="absolute top-4 right-4 bg-purple-100 text-purple-800 text-xs font-bold px-2.5 py-1 rounded">
+            Empresarial
+          </span>
+          <h3 class="text-2xl font-bold text-slate-900 mt-2">Flotillas & Telemetría</h3>
+          <p class="text-slate-600 mt-3 text-sm">Control total de camiones, paneles y maquinaria pesada.</p>
+          
+          <ul class="mt-6 space-y-3">
+            <li class="flex items-start text-sm text-slate-700">
+              <span class="text-green-500 mr-2 font-bold">✓</span> Control y reporte de consumo de combustible
+            </li>
+            <li class="flex items-start text-sm text-slate-700">
+              <span class="text-green-500 mr-2 font-bold">✓</span> Apagado del motor de forma remota
+            </li>
+            <li class="flex items-start text-sm text-slate-700">
+              <span class="text-green-500 mr-2 font-bold">✓</span> Plataforma web para reportes del MOPT
+            </li>
+          </ul>
+        </div>
+        <div class="mt-8 pt-6 border-t border-slate-100">
+          <button onclick="abrirWhatsApp('Flotillas y Empresas')" class="w-full bg-slate-900 hover:bg-blue-900 text-white text-center font-bold py-3 px-4 rounded-xl transition-colors text-sm cursor-pointer">
+            Preguntar por precio
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between hover:shadow-md transition-shadow relative overflow-hidden">
+        <div>
+          <span class="absolute top-4 right-4 bg-green-100 text-green-800 text-xs font-bold px-2.5 py-1 rounded">
+            100% Autónomo
+          </span>
+          <h3 class="text-2xl font-bold text-slate-900 mt-2">Outdoor & Aventura</h3>
+          <p class="text-slate-600 mt-3 text-sm">GPS de mano para senderismo y zonas montañosas.</p>
+          
+          <ul class="mt-6 space-y-3">
+            <li class="flex items-start text-sm text-slate-700">
+              <span class="text-green-500 mr-2 font-bold">✓</span> Batería de larga duración (hasta 15 días)
+            </li>
+            <li class="flex items-start text-sm text-slate-700">
+              <span class="text-green-500 mr-2 font-bold">✓</span> Certificación IP67 (Resistente al agua y barro)
+            </li>
+            <li class="flex items-start text-sm text-slate-700">
+              <span class="text-green-500 mr-2 font-bold">✓</span> Ideal para el Chirripó o Volcán Barva
+            </li>
+          </ul>
+        </div>
+        <div class="mt-8 pt-6 border-t border-slate-100">
+          <button onclick="abrirWhatsApp('Outdoor y Aventura')" class="w-full bg-slate-900 hover:bg-blue-900 text-white text-center font-bold py-3 px-4 rounded-xl transition-colors text-sm cursor-pointer">
+            Preguntar por precio
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <div class="fixed bottom-6 right-6 z-50">
+    <button onclick="abrirWhatsApp('Soporte General')" class="bg-[#25D366] hover:bg-[#20ba5a] text-white p-4 rounded-full shadow-2xl flex items-center justify-center transition-transform hover:scale-105 cursor-pointer" aria-label="Chat en WhatsApp">
+      <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.963C16.528 2.016 14.056.993 11.437.993c-5.443 0-9.87 4.373-9.874 9.803-.001 1.65.453 3.262 1.313 4.675L1.87 20.25l4.777-1.096z"/>
+      </svg>
+    </button>
+  </div>
+
+  <script>
+    function abrirWhatsApp(contexto) {
+      // Pega aquí tu número de teléfono de Costa Rica (deja el 506 al inicio)
+      const telefono = "50688888888"; 
+      const mensaje = encodeURIComponent(`¡Hola! Vi la página web y me interesa cotizar el GPS para: ${contexto}. ¡Pura vida!`);
+      window.open(`https://wa.me/${telefono}?text=${mensaje}`, '_blank');
+    }
+  </script>
+</body>
 </html>
