@@ -27,25 +27,37 @@
     </div>
   </nav>
 
-  <header class="relative bg-black text-white py-24 px-4 md:px-8 border-b-4 border-[#22C55E]">
-    <div class="max-w-5xl mx-auto text-center space-y-6">
-      <span class="inline-block bg-[#22C55E]/20 text-[#4ADE80] px-4 py-1.5 rounded-full text-sm font-bold tracking-wide uppercase mb-4">
-        ⚙️ INSTALACIÓN GRATIS EN NUESTRO TALLER
+ <header class="relative bg-black text-white min-h-[85vh] flex items-center border-b-4 border-[#22C55E]">
+    
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80&w=1920" 
+        alt="Rastreo GPS Profesional Costa Rica" 
+        class="w-full h-full object-cover opacity-60"
+      >
+      <div class="absolute inset-0 bg-black/50"></div>
+    </div>
+
+    <div class="max-w-5xl mx-auto text-center space-y-6 px-4 md:px-8 relative z-10">
+      <span class="inline-block bg-[#22C55E]/20 text-[#4ADE80] px-4 py-1.5 rounded-full text-sm font-bold tracking-wide uppercase mb-4 shadow-lg">
+        ⚙️ INSTALACIÓN GRATIS INCLUIDA
       </span>
-      <h1 class="text-4xl md:text-6xl font-black tracking-tight leading-none max-w-4xl mx-auto">
-        Controle su vehículo por solo <span class="text-[#F97316]">₡10,000</span> al mes
+      
+      <h1 class="text-4xl md:text-6xl font-black tracking-tight leading-none max-w-4xl mx-auto drop-shadow-lg">
+        Asegure su vehículo en todo el país por solo <span class="text-[#F97316]">₡10,000</span> al mes
       </h1>
-      <p class="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto font-medium mt-4">
-        Sin enredos de recargas. Incluye chip con conectividad global automática. Visualice la ubicación exacta integrada con <strong class="text-white">Waze y Google Maps</strong>.
+      <p class="text-lg md:text-xl text-slate-100 max-w-2xl mx-auto font-semibold mt-4 drop-shadow-md">
+        Sin enredos de recargas con chips locales. Conectividad global integrada. Localización exacta en tiempo real compatible con <strong class="text-white">Waze y Google Maps</strong>.
       </p>
-      <p class="text-sm text-[#4ADE80] font-semibold">
+      <p class="text-sm text-[#4ADE80] font-bold drop-shadow-sm">
         *La primera mensualidad se paga al momento de instalar el equipo.
       </p>
-      <div class="pt-6 flex flex-col sm:flex-row justify-center gap-4">
-        <a href="#planes" class="bg-[#22C55E] hover:bg-[#16A34A] text-black font-extrabold px-8 py-4 rounded-xl shadow-lg transition-all text-center">
+      
+      <div class="pt-8 flex flex-col sm:flex-row justify-center gap-6">
+        <a href="#planes" class="bg-[#22C55E] hover:bg-[#16A34A] text-black font-extrabold px-10 py-5 rounded-xl shadow-2xl transition-all text-center transform hover:scale-105">
           Ver Soluciones GPS
         </a>
-        <a href="javascript:void(0);" onclick="abrirWhatsApp('Cotización de Flotillas')" class="bg-black hover:bg-slate-900 text-white border-2 border-[#F97316] font-bold px-8 py-4 rounded-xl transition-all text-center">
+        <a href="javascript:void(0);" onclick="abrirWhatsApp('Cotización de Flotillas')" class="bg-black/50 hover:bg-slate-900/80 text-white border-2 border-[#F97316] font-bold px-10 py-5 rounded-xl transition-all text-center">
           Planes para Flotillas
         </a>
       </div>
